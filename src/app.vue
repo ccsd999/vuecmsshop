@@ -2,7 +2,7 @@
     <div class="app-container">
 
     <!-- header -->
-<mt-header fixed title="固定在顶部"></mt-header>
+<mt-header fixed title="vue-cmsshop"></mt-header>
     <!-- 主体内容 -->
 	<router-view></router-view>
     <!-- tabbar -->
@@ -37,6 +37,7 @@
 // 如果不设置样式，其他内容会被head覆盖
 .app-container{
 padding-top: 40px;
+padding-bottom: 50px;
 
 }
 </style>

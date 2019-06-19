@@ -3,16 +3,17 @@
         <!-- 新闻列表 -->
         <ul class="mui-table-view">
 				<li v-for="item in message" :key="item.id" class="mui-table-view-cell mui-media">
-					<a href="javascript:;">
+                    <!-- 带参数调整 -->
+					<router-link :to="'/home/newslist/detail/'+item.id">
                         <!-- 有的图片不显示，是因为线上图片链接失效，替换成有效图片链接即可 -->
 						<img class="mui-media-object mui-pull-left" :src="item.img_url">
 						<div class="mui-media-body">
 						<h2>{{item.title}}</h2>
 						<p class="mui-ellipsis">
-                                 <span>发布时间:{{item.add_time}}</span><span class="clicknum">点击{{item.click}}次</span>
+                                 <span>发布时间:{{item.add_time | dateFormat}}</span><span class="clicknum">点击{{item.click}}次</span>
                             </p>
 						</div>
-					</a>
+					</router-link>
 				</li>
 			</ul>
     </div>
@@ -31,9 +32,12 @@
         methods: {
             getLunBo(){
                 // 发起请求
-                this.$http.get('http://127.0.0.1:3000/api/getnewslist').then(function(res){
+                this.$http.get('api/getnewslist').then(function(res){
                     // console.log(res);
-                    this.message =res.body.message;
+                    if(res.body.status == 0){
+                        this.message =res.body.message;
+                    }
+                    
                 });
                 
             }
